@@ -1,0 +1,88 @@
+﻿@page
+@model CalorieCounter.Pages.designModel
+@{
+    
+    
+}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Home Page</title>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="~/css/testdesign2.css" >
+    
+</head>
+<body class="d-flex justify-content-center align-items-center vh-100 vw-100">
+    <div class="centered-box" style="border-radius:20px;  overflow: hidden;">
+        <div class="row menuRow">
+            <div class="col-1 d-flex flex-column align-items-center" style="height:80vh;">
+                <div style="width: 80%; height: 10%; margin-top: 20px">
+                    <img src="~/Images/ryangosling.jpeg"
+                         class="img-responsive pd-5"
+                         style="width: 100%; height: 100%; object-fit: fill; border-radius: 20%;" />
+                </div>
+                <div class="buttonDiv">
+                    <button class="btn mt-5" style="border-radius:26%;"><span class="bi bi-plus fs-3"></span></button>
+                </div>
+                <div class="buttonDiv">
+                    <button class="btn mt-5" style="border-radius:26%;"><span class="bi bi bi-pencil-fill fs-3"></span></button>
+                </div>
+                <div class="buttonDiv">
+                    <button class="btn mt-5" style="border-radius:26%;"><span class="bi bi-trash-fill fs-3"></span></button>
+                </div>
+                <div class="buttonDiv">
+                    <button class="btn mt-5" style="border-radius:26%; width: 55px; height: 55px; padding: 0;"><img src="~/Images/restaurant-menu-svgrepo-com.svg" style="object-fit: cover; width: 90%; height: 90%; border-radius: 26%;" class=" img-fluid menuSvg" /></button>
+                </div>
+                <div class="buttonDiv" style="margin-top:50px;">
+                    <button class="btn mt-5" style="border-radius:26%;"><span class="bi bi-gear-fill fs-3"></span></button>
+                </div>
+
+            </div>
+            <div class="col-11" >
+                <div class="row socialRow">
+                    <div class="col-8">
+                    <h1 style="font-size:35px;">It's better with friends</h1>
+                    <p>Make your next get-together extra special by requesting your favorite meals</p>
+                    <img src="~/Images/235b778d-b0b9-4599-9acd-ccf27d1a02f2-removebg-preview.png"  class="float-right" />
+                    <button class="btn btn-primary socialButton">Go to Social Hub </button>
+                    </div>
+                    <div class="col-4 orders"></div>
+                    <div class="row DishTypes" style="margin-top:10px;">
+                        <h1 style="font-size:50px">Lorem Ipsum dolor sit amet</h1>
+                    </div>
+                </div>
+             <div class="row dishTitle">
+                 <h1 style="font-size:30px;"> My dishes </h1>
+                    <div class="d-flex justify-content-end">
+                        
+                    </div>
+             </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        <div class="card">
+                            <img class="card-img-top" src="~/Images/borsch1.jpg" alt="borsch">
+                            <div class="card-body">
+                                <h5 class="card-title">Borsch</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- If you have more cards, just add more col-3 inside this row -->
+                </div>
+             
+            </div>
+           
+        </div>
+    </div>
+
+   
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+</body>
+</html>

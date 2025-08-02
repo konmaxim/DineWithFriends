@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@ViewData["Title"] - Account Management</title>
+  <!-- Bootstrap Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+  />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    :root {
+      --bg-dark: #0d0d0d;
+      --bg-card: #1f1f1f;
+      --accent-red: #e10600;
+      --text-light: #f4f4f4;
+      --text-muted: #aaaaaa;
+      --border-radius: 12px;
+      --transition: 0.3s ease;
+    }
+    /* Reset */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg-dark); color: var(--text-light); font-family: 'Segoe UI', sans-serif; line-height: 1.6; min-height: 100vh; display: flex; }
+    /* Sidebar */
+    .sidebar { width: 240px; background: var(--bg-card); display: flex; flex-direction: column; padding: 2rem 1rem; }
+    .sidebar .logo { font-size: 1.5rem; font-weight: bold; color: var(--accent-red); text-align: center; margin-bottom: 2rem; }
+    .sidebar nav a { display: flex; align-items: center; padding: 0.75rem 1rem; margin-bottom: 0.5rem; color: var(--text-muted); text-decoration: none; border-radius: var(--border-radius); transition: background var(--transition), color var(--transition); }
+    .sidebar nav a.active, .sidebar nav a:hover { background: var(--accent-red); color: var(--text-light); }
+    .sidebar nav a i { margin-right: 0.75rem; font-size: 1.1rem; }
+    /* Main Content */
+    .content { flex: 1; padding: 2rem; overflow-y: auto; }
+    .content h1 { font-size: 2rem; margin-bottom: 1rem; color: var(--accent-red); }
+    /* Card */
+    .card { background: var(--bg-card); border-radius: var(--border-radius); padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5); margin-bottom: 2rem; }
+    .card h2 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-light); }
+    /* Form */
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label { display: block; margin-bottom: 0.5rem; color: var(--text-muted); }
+    .form-group input { width: 100%; padding: 0.75rem 1rem; border: none; border-radius: var(--border-radius); background: #2a2a2a; color: var(--text-light); transition: background var(--transition); }
+    .form-group input:focus { outline: none; background: #333; }
+    .btn-primary { background: var(--accent-red); color: var(--text-light); border: none; padding: 0.75rem 1.5rem; border-radius: var(--border-radius); cursor: pointer; font-size: 1rem; transition: background var(--transition); }
+    .btn-primary:hover { background: #b90400; }
+    /* Tabs */
+    .tabs { display: flex; margin-bottom: 2rem; border-bottom: 1px solid #333; }
+    .tabs button { background: transparent; border: none; padding: 1rem 1.5rem; color: var(--text-muted); font-size: 1rem; cursor: pointer; transition: color var(--transition); }
+    .tabs button.active { color: var(--accent-red); border-bottom: 3px solid var(--accent-red); }
+    /* Responsive */
+    @@media (max-width: 768px) { .sidebar { display: none; } body { flex-direction: column; } .content { padding: 1rem; } }
+  </style>
+</head>
+<body class="d-flex flex-column flex-md-row">
+    <!-- Responsive Navbar Toggle -->
+    <nav class="navbar navbar-dark bg-dark d-md-none">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside id="sidebarMenu" class="sidebar collapse d-md-flex flex-column">
+        <div class="logo">Menu App</div>
+        <nav>
+            <a asp-area="Identity" asp-page="/Account/Manage/Index"><i class="bi bi-person-circle"></i>Profile</a>
+            <a asp-area="Identity" asp-page="/Account/Manage/ChangePassword"><i class="bi bi-key-fill"></i>Change Password</a>
+            <a asp-area="Identity" asp-page="/Account/Manage/TwoFactorAuthentication"><i class="bi bi-shield-lock-fill"></i>Two-Factor Auth (TBA)</a>
+            <a asp-area="Identity" asp-page="/Account/Manage/ExternalLogins"><i class="bi bi-box-arrow-in-right"></i>External Logins (TBA)</a>
+            <a asp-area="Identity" asp-page="/Account/Manage/PersonalData"><i class="bi bi-download"></i>Personal Data</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content flex-grow-1">
+        <h1>@ViewData["Title"]</h1>
+        @RenderBody()
+    </main>
+
+  <script>
+    document.querySelectorAll('.tabs button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('main > .card').forEach(sec => sec.hidden = true);
+        btn.classList.add('active');
+        const target = document.querySelector(btn.dataset.target);
+        if (target) target.hidden = false;
+      });
+    });
+  </script>
+</body>
+</html>

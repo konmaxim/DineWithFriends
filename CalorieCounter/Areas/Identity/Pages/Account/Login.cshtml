@@ -1,0 +1,136 @@
+﻿@page
+@model LoginModel
+
+@{
+    
+    ViewData["Title"] = "Log in";
+}
+<style>
+    body { 
+        background-color: #121212;
+    }
+    .sidebar {
+        display: none !important;
+    }
+    .auth-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 2rem;
+    }
+
+    .auth-box {
+        background: linear-gradient(145deg, #1e1e1e, #242424);
+        padding: 3rem;
+        border-radius: 2rem;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(0, 0, 0, 0.5);
+        border: 1px solid #e53935;
+        max-width: 500px;
+        width: 100%;
+        transition: transform 0.3s ease;
+    }
+
+        .auth-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .auth-box h2 {
+            color: #e53935;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            letter-spacing: 1px;
+        }
+
+    .form-control {
+        background: #2a2a2a;
+        border: none;
+        border-radius: 0.75rem;
+        color: #eee;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+    }
+
+        .form-control::placeholder {
+            color: #777;
+        }
+
+        .form-control:focus {
+            background: #2a2a2a;
+            color: #fff;
+            box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.3);
+        }
+
+    .btn-primary {
+        background: #c62828;
+        border: none;
+        border-radius: 1rem;
+        padding: 0.85rem;
+        font-size: 1.1rem;
+        font-weight: bold;
+        box-shadow: 0 4px 16px rgba(198, 40, 40, 0.4);
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background: #b71c1c;
+            transform: translateY(-2px);
+        }
+
+    .text-danger {
+        color: #ff6f6f;
+    }
+
+    .toggle-link {
+        color: #e53935;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+    }
+
+        .toggle-link:hover {
+            color: #d32f2f;
+        }
+
+    .form-check-input {
+        accent-color: #e53935;
+    }
+</style>
+
+<div class="auth-container">
+    <div class="auth-box">
+        <form id="account" method="post">
+            <h2>Log in to your account</h2>
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+
+            <div class="mb-3">
+                <label asp-for="Input.Email" class="form-label text-muted"></label>
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" placeholder="you@example.com" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Input.Password" class="form-label text-muted"></label>
+                <input asp-for="Input.Password" type="password" class="form-control" autocomplete="current-password" placeholder="Password" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-check mb-3">
+                <input asp-for="Input.RememberMe" class="form-check-input" />
+                <label asp-for="Input.RememberMe" class="form-check-label text-muted"></label>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mb-3">Log in</button>
+
+            <div class="d-flex justify-content-between">
+                <a asp-page="./ForgotPassword" class="toggle-link">Forgot password?</a>
+                <a asp-page="./Register" class="toggle-link">Register</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,64 @@
+﻿.image-row {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+.image-wrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+}
+
+.close-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.close-btn:hover {
+        background: rgba(255, 0, 0, 0.8);
+}
+.addImage {
+    height: 150px;
+    width: 150px;
+    position: relative;
+    background-color: #D3D3D3;
+    opacity: 0.2;
+    border-radius: 12px;
+}
+.addImageButton {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+}

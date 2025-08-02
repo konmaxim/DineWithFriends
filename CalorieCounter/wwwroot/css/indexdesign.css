@@ -1,0 +1,76 @@
+﻿body {
+  background: radial-gradient(circle at top left, #1a1a1a 0%, #2c2c2c 40%, #611515 70%, #8b1e1e 100%);
+  font-family: "Poppins";
+  color: white;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+.menuRow {
+  background: #2a2a2a;
+  background-blend-mode: overlay;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.container {
+  background-color: #333333;
+  border-radius: 20%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  width: 95%;
+  height: 85%;
+}
+
+.centered-box {
+  background-color: #333333;
+  width: 85vw;
+  height: 80vh;
+  border-radius: 20px;
+  z-index: 10;
+}
+
+.col-1.bg-secondary {
+  z-index: 3;
+  border-radius: 20px;
+}
+
+.btn {
+  border: none;
+  color: white;
+  font-size: 27px;
+  background-color: #FA8072;
+}
+
+.col-11 {
+  background-color: #1e1e1e;
+  z-index: 20;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.socialRow {
+  margin: 50px;
+}
+
+.col-8 {
+  background-color: #FFB2B2;
+  border-radius: 20px;
+}
+
+.socialButton {
+  margin-top: 10px;
+}
+
+.card-img-top {
+  max-width: 50%;
+  height: 10vh;
+}
+
+.card-body {
+  background: #2a2a2a;
+  color: white;
+  margin-bottom: 0;
+  z-index: 20;
+}

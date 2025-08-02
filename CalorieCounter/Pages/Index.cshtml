@@ -1,0 +1,132 @@
+﻿@page
+@model CalorieCounter.Pages.IndexModel
+@{
+    Layout = "/Pages/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Home Page";
+    ViewData["ProfilePictureUrl"] = Model.ProfilePictureUrl;
+}
+
+<!-- Hero Section -->
+<body>
+<section class="row align-items-center text-dark rounded p-3 mb-4" style="background-color:#FA8072;">
+    <div class="col-12 col-lg-8 socialDiv">
+        <h1 class="display-6">It's better with friends</h1>
+        <p style="margin-top:30px;">Make your next get-together extra special by requesting your favorite meals.</p>
+        <a href="#" class="btn socialbutton">Go to Social Hub</a>
+    </div>
+    <div class="col-12 col-lg-4 text-center text-lg-end">
+        <img src="~/Images/235b778d-b0b9-4599-9acd-ccf27d1a02f2-removebg-preview.png" class="img-fluid" alt="Illustration" />
+    </div>
+</section>
+
+<!-- Dishes Section -->
+<section>
+    <h2 class="h4" style="text-align: start;">My Dishes</h2>
+    <div class="dishbuttonrow d-flex justify-content-end">
+        <button id="prevBtn" class="btn btn-outline-light shadow-sm">Previous</button>
+        <button id="nextBtn" class="btn btn-outline-light shadow-sm">Next</button>
+    </div>
+
+    <div class="row g-3" id="cardRow">
+        @for (int i = 0; i < Math.Min(4, Model.Dish.Count); i++)
+        {
+            var dish = Model.Dish[i];
+            var itemImages = Model.DishImages.Where(img => img.DishID == dish.Id);
+            var displayImg = itemImages.FirstOrDefault();
+
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="card bg-dark text-white h-100">
+                    <img src="~/Images/@displayImg?.ImageString" class="card-img-top" />
+                    <div class="card-body">
+                        <h5 class="card-title">@dish.Name</h5>
+                        <p class="card-text">@dish.Description</p>
+                        <div class="justify-content-center">
+                            <a href="#" class="btn socialbutton btn-sm">View</a>
+                            <a href="#" class="btn socialbutton btn-sm">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+</body>
+   
+    <script>
+        
+        const dishes = @Html.Raw(Json.Serialize(Model.Dish));
+        const dishImages = @Html.Raw(Json.Serialize(Model.DishImages));
+        let startIndex = 4;
+
+        document.getElementById('nextBtn').addEventListener('click', function () {
+            const cardContainer = document.getElementById('cardRow');
+            const cards = cardContainer.querySelectorAll('.card');
+
+            if (startIndex> dishes.length) return;
+            
+            
+            const nextDish = dishes[startIndex]; 
+            const rightCard = cards[3]; 
+           
+          
+            const cardTitle = rightCard.querySelector('.card-title');
+            const cardText = rightCard.querySelector('.card-text');
+            const img = rightCard.querySelector('img');
+            console.log(dishes);
+            console.log(dishImages);
+            const imageMatch = dishImages.find(imgObj => imgObj.dishID == nextDish.id);
+            console.log(imageMatch);
+            rightCard.classList.add('fade-out');
+
+            setTimeout(() => {
+                img.src = `/Images/${imageMatch.imageString}`;
+                cardTitle.textContent = nextDish.name;
+                cardText.textContent = nextDish.description || '';
+
+                rightCard.classList.remove('fade-out');
+                rightCard.classList.add('fade-in');
+            }, 300);
+
+            setTimeout(() => {
+                rightCard.classList.remove('fade-in');
+            }, 600);
+
+            startIndex++;
+        });
+        document.getElementById('prevBtn').addEventListener('click', function () {
+            const cardContainer = document.getElementById('cardRow');
+            const cards = cardContainer.querySelectorAll('.card');
+
+            if (startIndex-2 < 3) return;
+
+            console.log(startIndex);
+            const prevDish = dishes[startIndex-2];
+            const rightCard = cards[3];
+          
+
+            const cardTitle = rightCard.querySelector('.card-title');
+            const cardText = rightCard.querySelector('.card-text');
+            const img = rightCard.querySelector('img');
+            
+            const imageMatch = dishImages.find(imgObj => imgObj.dishID == prevDish.id);
+            console.log(prevDish);
+            console.log(imageMatch);
+            rightCard.classList.add('fade-out');
+
+            setTimeout(() => {
+                img.src = `/Images/${imageMatch.imageString}`;
+                cardTitle.textContent = prevDish.name;
+                cardText.textContent = prevDish.description || '';
+
+                rightCard.classList.remove('fade-out');
+                rightCard.classList.add('fade-in');
+            }, 300);
+
+            setTimeout(() => {
+                rightCard.classList.remove('fade-in');
+            }, 600);
+
+            startIndex--;
+        });
+               
+    </script>

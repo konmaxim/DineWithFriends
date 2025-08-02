@@ -1,0 +1,206 @@
+﻿@page
+@model RegisterModel
+
+@{
+  
+    ViewData["Title"] = "Register";
+}
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<style>
+    body {
+        background-color: #121212;
+        color: #777;
+    }
+
+    .auth-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 2rem;
+    }
+
+    .auth-box {
+        background: linear-gradient(145deg, #1e1e1e, #242424);
+        padding: 3rem;
+        border-radius: 2rem;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(0, 0, 0, 0.5);
+        border: 1px solid #e53935;
+        max-width: 500px;
+        width: 100%;
+        transition: transform 0.3s ease;
+    }
+
+        .auth-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .auth-box h2 {
+            color: #e53935;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            letter-spacing: 1px;
+        }
+
+    .form-control {
+        background: #2a2a2a;
+        border: none;
+        border-radius: 0.75rem;
+        color: #eee;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+    }
+
+        .form-control::placeholder {
+            color: #777;
+        }
+
+        .form-control:focus {
+            background: #2a2a2a;
+            color: #fff;
+            box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.3);
+        }
+
+    .btn-primary {
+        background: #c62828;
+        border: none;
+        border-radius: 1rem;
+        padding: 0.85rem;
+        font-size: 1.1rem;
+        font-weight: bold;
+        box-shadow: 0 4px 16px rgba(198, 40, 40, 0.4);
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background: #b71c1c;
+            transform: translateY(-2px);
+        }
+
+    .text-danger {
+        color: #ff6f6f;
+    }
+
+    .form-floating > label {
+        color: #aaa;
+    }
+
+    .toggle-link {
+        color: #e53935;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+    }
+
+        .toggle-link:hover {
+            color: #d32f2f;
+        }
+
+    custom-file-upload {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem;
+        border: 2px dashed #e53935;
+        border-radius: 1rem;
+        background-color: #1e1e1e;
+        color: #bbb;
+        transition: border-color 0.3s ease, background-color 0.3s ease;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .custom-file-upload:hover {
+        border-color: #ff6f6f;
+        background-color: #252525;
+    }
+
+    .custom-file-upload i {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        color: #e53935;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+</style>
+
+<div class="auth-container">
+    <div class="auth-box">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
+            <h2>Create Your Account</h2>
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-4" role="alert"></div>
+            <div class="form-floating mb-4">
+                <input asp-for="Input.NickName" class="form-control" autocomplete="username" placeholder="Grigoriy2000" />
+                <label asp-for="Input.NickName"> Nickname</label>
+                <span asp-validation-for="Input.NickName" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-4">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" placeholder="name@example.com" />
+                <label asp-for="Input.Email">Email</label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-4">
+                <input asp-for="Input.Password" type="password" class="form-control" autocomplete="new-password" placeholder="Password" />
+                <label asp-for="Input.Password">Password</label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-4">
+                <input asp-for="Input.ConfirmPassword" type="password" class="form-control" autocomplete="new-password" placeholder="Confirm Password" />
+                <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-4">
+                <input asp-for="Input.Birthday" class="form-control" type="date" />
+                <label asp-for="Input.Birthday">Date of Birth</label>
+                <span asp-validation-for="Input.Birthday" class="text-danger"></span>
+            </div>
+            <div class="mb-4">
+                <label for="profilePicture" class="custom-file-upload">
+                    <i class="fas fa-upload"></i>
+                    <span>Click to add profile image</span>
+                </label>
+                <input asp-for="Input.ProfilePicture" type="file" id="profilePicture" />
+                <span asp-validation-for="Input.ProfilePicture" class="text-danger"></span>
+            </div>
+            <button id="registerSubmit" type="submit" class="btn btn-primary w-100 mb-3">Register</button>
+
+            <div class="text-center">
+                <a asp-page="./Login" class="toggle-link">Already have an account? Log in</a>
+            </div>
+        </form>
+
+        <section class="mt-5">
+            <h3 class="text-center text-muted">Or register using</h3>
+            <hr />
+            @if ((Model.ExternalLogins?.Count ?? 0) == 0)
+            {
+                <p class="text-center text-muted">No external services configured.</p>
+            }
+            else
+            {
+                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <div class="d-flex justify-content-center">
+                        @foreach (var provider in Model.ExternalLogins!)
+                        {
+                            <button type="submit" class="btn btn-primary mx-2" name="provider" value="@provider.Name" title="Register using @provider.DisplayName">
+                                @provider.DisplayName
+                            </button>
+                        }
+                    </div>
+                </form>
+            }
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
