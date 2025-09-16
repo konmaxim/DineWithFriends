@@ -25,8 +25,9 @@ namespace CalorieCounter.Pages
             _userManager = userManager;
         }
         public string ProfilePictureUrl { get; private set; } = "";
-        public IList<Dish> Dish { get;set; } = default!;
+        public IList<DishViewModel> Dish { get;set; } = default!;
         public List<DishImage> DishImages { get; set; } = default!;
+        public List<int> DishIds = []; 
         public async Task OnGetAsync()
         {
            
@@ -36,9 +37,30 @@ namespace CalorieCounter.Pages
                 var user = await _userManager.FindByIdAsync(userID);
                 ProfilePictureUrl = user.ProfilePicturePath;
             }
-           
-            Dish = await _context.Dishes.ToListAsync();
-            DishImages = await _context.DishImages.ToListAsync();
+            Dish = await _context.Dishes
+            .Where(d => d.User.Id == userID)
+            .Select(d => new DishViewModel
+            {
+         
+                Name = d.Name,
+                Description = d.Description,
+                Ingredients = d.Ingredients,
+                Category = d.Category
+
+            })
+            .ToListAsync();
+            DishIds = _context.Dishes
+                      .Where(d => d.User.Id == userID)
+                      .Select(d => d.Id)
+                       .ToList();
+
+            DishImages = await (
+                from img in _context.DishImages
+                join d in _context.Dishes on img.DishID equals d.Id
+                where d.User.Id == userID
+                select img
+                ).ToListAsync();
+
         }
     }
 }

@@ -84,7 +84,6 @@ D:\bruv\CalorieCounter\CalorieCounter\bin\Debug\net8.0\System.Composition.Runtim
 D:\bruv\CalorieCounter\CalorieCounter\bin\Debug\net8.0\System.Composition.TypedParts.dll
 D:\bruv\CalorieCounter\CalorieCounter\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
 D:\bruv\CalorieCounter\CalorieCounter\bin\Debug\net8.0\System.Drawing.Common.dll
-D:\bruv\CalorieCounter\CalorieCounter\bin\Debug\net8.0\System.Formats.Asn1.dll
 D:\bruv\CalorieCounter\CalorieCounter\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 D:\bruv\CalorieCounter\CalorieCounter\bin\Debug\net8.0\System.Memory.Data.dll
 D:\bruv\CalorieCounter\CalorieCounter\bin\Debug\net8.0\System.Reflection.MetadataLoadContext.dll
@@ -244,11 +243,6 @@ D:\bruv\CalorieCounter\CalorieCounter\bin\Debug\net8.0\runtimes\win\lib\net7.0\S
 D:\bruv\CalorieCounter\CalorieCounter\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 D:\bruv\CalorieCounter\CalorieCounter\obj\Debug\net8.0\staticwebassets.build.json
 D:\bruv\CalorieCounter\CalorieCounter\obj\Debug\net8.0\staticwebassets.development.json
-D:\bruv\CalorieCounter\CalorieCounter\obj\Debug\net8.0\staticwebassets\msbuild.CalorieCounter.Microsoft.AspNetCore.StaticWebAssets.props
-D:\bruv\CalorieCounter\CalorieCounter\obj\Debug\net8.0\staticwebassets\msbuild.build.CalorieCounter.props
-D:\bruv\CalorieCounter\CalorieCounter\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.CalorieCounter.props
-D:\bruv\CalorieCounter\CalorieCounter\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.CalorieCounter.props
-D:\bruv\CalorieCounter\CalorieCounter\obj\Debug\net8.0\staticwebassets.pack.json
 D:\bruv\CalorieCounter\CalorieCounter\obj\Debug\net8.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
 D:\bruv\CalorieCounter\CalorieCounter\obj\Debug\net8.0\scopedcss\bundle\CalorieCounter.styles.css
 D:\bruv\CalorieCounter\CalorieCounter\obj\Debug\net8.0\scopedcss\projectbundle\CalorieCounter.bundle.scp.css
@@ -291,3 +285,17 @@ D:\bruv\CalorieCounter\CalorieCounter\bin\Debug\net8.0\runtimes\win-arm64\native
 D:\bruv\CalorieCounter\CalorieCounter\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
 D:\bruv\CalorieCounter\CalorieCounter\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
 D:\bruv\CalorieCounter\CalorieCounter\obj\Debug\net8.0\CalorieCounter.MvcApplicationPartsAssemblyInfo.cs
+D:\bruv\CalorieCounter\CalorieCounter\obj\Debug\net8.0\CalorieCounter.sourcelink.json
+D:\bruv\CalorieCounter\CalorieCounter\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+D:\bruv\CalorieCounter\CalorieCounter\bin\Debug\net8.0\MailKit.dll
+D:\bruv\CalorieCounter\CalorieCounter\bin\Debug\net8.0\MimeKit.dll
+D:\bruv\CalorieCounter\CalorieCounter\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
+D:\bruv\CalorieCounter\CalorieCounter\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
+D:\bruv\CalorieCounter\CalorieCounter\bin\Debug\net8.0\CalorieCounter.staticwebassets.endpoints.json
+D:\bruv\CalorieCounter\CalorieCounter\obj\Debug\net8.0\rpswa.dswa.cache.json
+D:\bruv\CalorieCounter\CalorieCounter\obj\Debug\net8.0\rjimswa.dswa.cache.json
+D:\bruv\CalorieCounter\CalorieCounter\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+D:\bruv\CalorieCounter\CalorieCounter\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+D:\bruv\CalorieCounter\CalorieCounter\obj\Debug\net8.0\staticwebassets.build.json.cache
+D:\bruv\CalorieCounter\CalorieCounter\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+D:\bruv\CalorieCounter\CalorieCounter\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

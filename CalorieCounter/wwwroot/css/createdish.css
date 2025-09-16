@@ -1,0 +1,43 @@
+﻿.form-container {
+    background-color: #1e1e1e;
+    padding: 2rem;
+    border-radius: 10px;
+    color: white;
+}
+
+.form-control,
+input[type="file"] {
+    background-color: #2c2c2c;
+    border: 1px solid #444;
+    color: white;
+}
+
+    .form-control:focus {
+        background-color: #2c2c2c;
+        border-color: #ff6b6b;
+        box-shadow: 0 0 0 0.2rem rgba(255, 107, 107, 0.25);
+        color: white;
+    }
+
+.btn-primary {
+    background-color: #ff6b6b;
+    border: none;
+}
+
+    .btn-primary:hover {
+        background-color: #ff5252;
+    }
+
+label {
+    margin-top: 1rem;
+}
+
+.text-danger {
+    font-size: 0.85rem;
+}
+
+.title-heading {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}

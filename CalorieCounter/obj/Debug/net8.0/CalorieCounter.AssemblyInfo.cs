@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CalorieCounter")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+30992482ad921b9c4c584ae65b1628a0286d3986")]
 [assembly: System.Reflection.AssemblyProductAttribute("CalorieCounter")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CalorieCounter")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

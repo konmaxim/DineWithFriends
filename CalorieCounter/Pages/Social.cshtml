@@ -1,0 +1,117 @@
+﻿@page
+@model CalorieCounter.Pages.SocialModel
+@{
+    Layout = "/Pages/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Social Hub";
+    //ViewData["ProfilePictureUrl"] = Model.ProfilePictureUrl;
+}
+<div class="social-hub container-fluid p-4">
+    <!-- Title -->
+    <h2 class="text-center text-white mb-4">Social Hub</h2>
+
+    <div class="container-fluid bg-dark py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center mb-4">
+                <h2 class="text-light">⭐ Favorite Contacts</h2>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <!-- Contact Card 1 -->
+            <div class="col-6 col-md-4 col-lg-2 mb-4">
+                <div class="card h-100 text-center shadow-lg border-0 bg-secondary text-light">
+                    <img src="~/pfps/93682b35-c45f-4166-a536-b3e22da3e5ae.jpg" class="card-img-top rounded-circle mx-auto mt-3"
+                         alt="Contact 1" style="width: 80px; height: 80px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Alice</h5>
+                        <button class="btn btn-outline-light btn-sm">Make Request</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Card 2 -->
+            <div class="col-6 col-md-4 col-lg-2 mb-4">
+                <div class="card h-100 text-center shadow-lg border-0 bg-secondary text-light">
+                    <img src="~/pfps/93682b35-c45f-4166-a536-b3e22da3e5ae.jpg" class="card-img-top rounded-circle mx-auto mt-3"
+                         alt="Contact 2" style="width: 80px; height: 80px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Bob</h5>
+                        <button class="btn btn-outline-light btn-sm">Make Request</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Card 3 -->
+            <div class="col-6 col-md-4 col-lg-2 mb-4">
+                <div class="card h-100 text-center shadow-lg border-0 bg-secondary text-light">
+                    <img src="~/pfps/93682b35-c45f-4166-a536-b3e22da3e5ae.jpg" class="card-img-top rounded-circle mx-auto mt-3"
+                         alt="Contact 3" style="width: 80px; height: 80px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Charlie</h5>
+                        <button class="btn btn-outline-light btn-sm">Make Request</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Upcoming Requests -->
+        <div class="col-md-6">
+            <h4 class="text-white mb-3">Upcoming Requests</h4>
+            <div class="card mb-3 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">🍲 Alice is preparing dinner</h5>
+                    <p class="card-text text-muted">Thursday · 7pm</p>
+                </div>
+            </div>
+            <div class="card mb-3 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">☕ Tom: Coffee meetup</h5>
+                    <p class="card-text text-muted">Pending confirmation</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Get-Togethers -->
+        <div class="col-md-6">
+            <h4 class="text-white mb-3">Upcoming Get-Togethers</h4>
+            <div class="card mb-3 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">🎶 Karaoke Night</h5>
+                    <p class="card-text text-muted">Saturday · 8pm · 5 friends</p>
+                </div>
+            </div>
+            <div class="card mb-3 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">🏞️ Hiking Trip</h5>
+                    <p class="card-text text-muted">Next Sunday · 3 friends</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .social-hub {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #1c1c1c, #2d2d2d);
+    }
+
+    h4 {
+        font-weight: 600;
+    }
+    btn {
+        background-color: #FA8072 !important;
+    }
+    .card {
+        border: none;
+        border-radius: 1rem;
+    }
+
+    .card-body {
+        background: #fff;
+        color: black;
+        border-radius: 1rem;
+    }
+</style>

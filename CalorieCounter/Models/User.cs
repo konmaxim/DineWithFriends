@@ -9,6 +9,7 @@ namespace CalorieCounter.Models
        
         public DateOnly BirthDay { get; set; }
         public string? ProfilePicturePath { get; set; }
+        public virtual List<Dish>? UserDishes { get; set; } = new List<Dish>();
         public virtual List<Friendship>? Inviters { get; set; } = new List<Friendship>();
       
         public virtual List<Friendship>? Invitees { get; set; } = new List<Friendship>();

@@ -13,49 +13,73 @@
 <head>
     <style href="~/friendsdesign.css"></style>
 </head>
+<form id="dummyForm">
+    @Html.AntiForgeryToken()
+</form>
 <ul class="nav nav-tabs border-0" id="friendTabs" role="tablist">
-    <li class="nav-item" role="presentation">
-        <button class="nav-link" id="friends-tab" data-bs-toggle="tab" data-bs-target="#friends" type="button" role="tab">Friends</button>
-    </li>
-    <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="online-tab" data-bs-toggle="tab" data-bs-target="#online" type="button" role="tab">Online</button>
-    </li>
+ 
+   
     <li class="nav-item" role="presentation">
         <button class="nav-link" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab">All</button>
     </li>
     <li class="nav-item" role="presentation">
         <button class="nav-link" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" type="button" role="tab">Pending</button>
     </li>
-    <!-- Add Friend Button -->
+   
     <button class="btn add-friend-btn" data-bs-toggle="modal" data-bs-target="#addFriendModal">Add Friend</button>
 </ul>
 
 
 
-<!-- Tab Content -->
+
 <div class="tab-content mt-3" id="friendTabsContent">
-    <div class="tab-pane fade" id="friends" role="tabpanel">
-        <p>Friends list here...</p>
-    </div>
-    <div class="tab-pane fade show active" id="online" role="tabpanel">
-        <p>Online friends...</p>
-    </div>
-    <div class="tab-pane fade" id="all" role="tabpanel">
-        <p>All friends...</p>
+  
+    
+    <div class="tab-pane fade show active" id="all" role="tabpanel">
+
+        <p>All friends</p>
+        @if (Model.Friends != null)
+        {
+            <ul class="list-group">
+                @foreach (var request in Model.Friends)
+                {
+                    <li class="list-group-item bg-dark text-white rounded d-flex align-items-center justify-content-between mb-2">
+                        <div class="d-flex align-items-center gap-3">
+                        <img src="@request.ProfilePicturePath" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;" />
+                        <span class="fw-semibold">@request.NickName</span>
+                    
+                    </div>
+                        <button class="btn btn-outline-light btn-sm star-btn">
+                            <i class="bi bi-star"></i>
+                        </button>
+                    </li>
+                }
+        </ul>
+        }
     </div>
     <div class="tab-pane fade" id="pending" role="tabpanel">
         <h5>Pending Requests</h5> 
-        @if (Model.PendingRequestsSent != null)
+        @if (Model.PendingRequestsRecieved != null)
         {
             <ul class="list-group">
-                @foreach (var request in Model.PendingRequestsSent)
+                @foreach (var request in Model.PendingRequestsRecieved)
                 {
                     <li class="list-group-item bg-dark text-white rounded d-flex align-items-center justify-content-between mb-2">
                     <div class="d-flex align-items-center gap-3">
-                        <img src="@request.User1.ProfilePicturePath" alt="Profile" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;" />
-                        <span class="fw-semibold">@request.User2.NickName</span>
+                        <img src="@request.User1.ProfilePicturePath" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;" />
+                        <span class="fw-semibold">@request.User1.NickName</span>
                     
                     </div>
+                        <form method="post" asp-page-handler="Accept" style="display:inline;">
+                            <input type="hidden" name="user1Id" value="@request.User1Id" />
+                            <input type="hidden" name="user2Id" value="@request.User2Id" />
+                            <button type="submit" class="btn btn-success btn-sm">Accept</button>
+                        </form>
+                        <form method="post" asp-page-handler="Reject" style="display:inline; margin-left:5px;">
+                            <input type="hidden" name="user1Id" value="@request.User1Id" />
+                            <input type="hidden" name="user2Id" value="@request.User2Id" />
+                            <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+                        </form>
                     </li>
                 }
             </ul>
@@ -97,6 +121,32 @@
     </div>
 </div>
 
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="favToast" class="toast text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body" style="color:black">
+                ✅ User added to favorites
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+<script>
+      document.querySelectorAll('.star-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const icon = this.querySelector('i');
+        icon.classList.toggle('bi-star');
+        icon.classList.toggle('bi-star-fill');
+
+        if (icon.classList.contains('bi-star-fill')) {
+          
+          const toastEl = document.getElementById('favToast');
+          const toast = new bootstrap.Toast(toastEl);
+          toast.show();
+        }
+      });
+    });
+</script>
 @if (Model.StatusMessage != null)
 {
     <div class="alert alert-success mt-3">@Model.StatusMessage</div>

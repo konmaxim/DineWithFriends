@@ -30,14 +30,25 @@ namespace CalorieCounter.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Ingredients")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Dishes");
                 });
@@ -77,11 +88,36 @@ namespace CalorieCounter.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("User1Id", "User2Id", "Status");
+                    b.HasKey("User1Id", "User2Id");
 
                     b.HasIndex("User2Id");
 
                     b.ToTable("Friendships");
+                });
+
+            modelBuilder.Entity("CalorieCounter.Models.Ingredient", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DishId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DishId");
+
+                    b.ToTable("Ingredients");
                 });
 
             modelBuilder.Entity("CalorieCounter.Models.User", b =>
@@ -296,6 +332,15 @@ namespace CalorieCounter.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("CalorieCounter.Models.Dish", b =>
+                {
+                    b.HasOne("CalorieCounter.Models.User", "User")
+                        .WithMany("UserDishes")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("CalorieCounter.Models.Friendship", b =>
                 {
                     b.HasOne("CalorieCounter.Models.User", "User1")
@@ -313,6 +358,17 @@ namespace CalorieCounter.Migrations
                     b.Navigation("User1");
 
                     b.Navigation("User2");
+                });
+
+            modelBuilder.Entity("CalorieCounter.Models.Ingredient", b =>
+                {
+                    b.HasOne("CalorieCounter.Models.Dish", "Dish")
+                        .WithMany()
+                        .HasForeignKey("DishId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Dish");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -371,6 +427,8 @@ namespace CalorieCounter.Migrations
                     b.Navigation("Invitees");
 
                     b.Navigation("Inviters");
+
+                    b.Navigation("UserDishes");
                 });
 #pragma warning restore 612, 618
         }

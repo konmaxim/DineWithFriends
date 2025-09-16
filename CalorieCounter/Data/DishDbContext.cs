@@ -15,11 +15,12 @@ namespace CalorieCounter.Data
         public DbSet<Dish> Dishes { get; set; } = default!;
         public DbSet<Friendship> Friendships { get; set; }
         public DbSet<DishImage> DishImages { get; set; } = default!;
+        public DbSet<Ingredient> Ingredients { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Friendship>()
-                .HasKey(fs => new { fs.User1Id, fs.User2Id, fs.Status });
+                .HasKey(fs => new { fs.User1Id, fs.User2Id});
             //each user has many inviters, and the second user then has many invitees
            //many-to-many relationship with friendship class as the join
             modelBuilder.Entity<Friendship>()

@@ -5,39 +5,135 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<form id="dummyForm">
+    @Html.AntiForgeryToken()
+</form>
 
-<h4>Dish</h4>
-<hr />
+<link rel="stylesheet" href="~/css/createdish.css" />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="title-heading">Create Dish</div>
+
+            <button id="generateBtn" type="button" class="btn btn-success rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#recipeModal">
+                    Generate a Recipe
+                </button>
+         
+     
+        </div>
+
+     </div>
+
         <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="form-group">
-                <label asp-for="Input.Name" class="control-label"></label>
+                <label asp-for="Input.Name"></label>
                 <input asp-for="Input.Name" class="form-control" />
                 <span asp-validation-for="Input.Name" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="Input.Description" class="control-label"></label>
+                <label asp-for="Input.Description"></label>
                 <input asp-for="Input.Description" class="form-control" />
                 <span asp-validation-for="Input.Description" class="text-danger"></span>
+            </div>
 
-            </div>
-            <div>
-                <label asp-for="Input.Image"></label>
-                <input asp-for="Input.Image" type="file" multiple />
-            </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="Input.Category"></label>
+                <input asp-for="Input.Category" class="form-control" />
+                <span asp-validation-for="Input.Category" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Ingredients"></label>
+                <input asp-for="Input.Ingredients" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Image"></label>
+                <input asp-for="Input.Image" type="file" class="form-control" />
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Create" class="btn btn-primary w-100" />
+            </div>
+
+            <div class="mt-2">
+                <a asp-page="./Index" class="text-info">Back to List</a>
             </div>
         </form>
-    </div>
+
 </div>
 
-<div>
-    <a asp-page="Index">Back to List</a>
+<div class="modal fade" id="recipeModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark text-white border-0 glassy-card">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">Generated Recipe</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="recipeModalBody">
+                <!-- recipe content injected here -->
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-success">Add</button>
+                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
 </div>
+<style>
+    .glassy-card {
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        backdrop-filter: blur(8px); 
+    }
+
+        .glassy-card .card-body {
+            background-color: rgba(0, 0, 0, 0) ;
+        }
+
+    .card-body {
+        background-color: rgba(0, 0, 0, 0) ;
+        color:white;
+    
+    }
+    .card {
+        background-color: rgba(0, 0, 0, 0) ;
+    }
+</style>
+<script>
+
+        document.getElementById("generateBtn").addEventListener("click", async function (e) {
+        e.preventDefault(); 
+            console.log("Button clicked! JS is running");
+            const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+            const response = await fetch("/Create?handler=EmbedDishes", {
+                method: "POST",
+                headers: {
+                    "RequestVerificationToken": token 
+                }
+                
+            });
+
+            const html = await response.text();
+            document.getElementById("recipeModalBody").innerHTML = html;
+
+            const modalEl = document.getElementById('recipeModal');
+            const recipeModal = new bootstrap.Modal(modalEl);
+
+   
+            recipeModal.show();
+            
+            modalEl.addEventListener('hidden.bs.modal', () => {
+        const backdrop = document.querySelector('.modal-backdrop');
+        if (backdrop) backdrop.remove();
+    });
+       
+    });
+
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

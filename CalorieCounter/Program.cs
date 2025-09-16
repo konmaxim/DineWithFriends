@@ -3,6 +3,7 @@ using CalorieCounter.Infrastructure;
 using CalorieCounter.Models;
 using CalorieCounter.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +19,9 @@ builder.Services.AddDefaultIdentity<User>(options =>
     options.Password.RequireDigit = false;
     options.Password.RequireUppercase = false;
 })
+
 .AddEntityFrameworkStores<DishDbContext>();
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.AddScoped<IProfilePictureStore, FileSystemProfilePictureStore>();
 builder.Services.AddRazorPages(options =>
 {
